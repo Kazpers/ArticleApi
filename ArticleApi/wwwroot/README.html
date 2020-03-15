@@ -1,0 +1,126 @@
+<html>
+<head>
+<style>
+.boxed {
+  border: 1px solid;
+  padding: 10px;
+  margin: 10px;
+  width: 1024px;
+}
+
+.float {
+  float: left;
+}
+
+.get {
+  color: green;
+  margin-right: 20px;
+  float: left;
+}
+
+.post {
+  color: orange;
+  margin-right: 20px;
+  float: left;
+}
+
+.delete {
+  color: red;
+  margin-right: 20px;
+  float: left;
+}
+
+</style>
+</head>
+<body>
+<h1>Article API</h1>
+<p>A test API for article management</p>
+
+<div class="boxed">
+<h2><div class="get">GET</div>Get All Articles</h2>
+<p><code><a href="/api/articles">/api/articles</a></code></p>
+<p>This gets a list of all articles in the system</p>
+<h4>Example</h4>
+<p><code>curl --location --request GET 'http://localhost:3000/api/articles</code></p>
+</div>
+
+<div class="boxed">
+<h2><div class="get">GET</div>Get Article By Id</h2>
+<p><code><a href="/api/article/{articleId}">/api/article/{articleId}</a></code></p>
+<p>This gets an article by specific id</p>
+<h4>Example</h4>
+<p><code>curl --location --request GET 'http://localhost:3000/api/article/c4c2177b-8465-40dc-a8b8-a706f7d99f35'</code></p>
+</div>
+
+<div class="boxed">
+<h2><div class="get">GET</div>Get Articles by Author Id</h2>
+<p><code><a href="/api/articles/by/author/{authorId}">/api/articles/by/author/{authorId}</a></code></p>
+<p>This gets a list of all articles by a given author</p>
+<h4>Example</h4>
+<p><code>curl --location --request GET 'http://localhost:3000/api/articles/by/author/ca93fc3b-195c-4293-ac5b-8b49e2c1684c'</code></p>
+</div>
+
+<div class="boxed">
+<h2><div class="get">GET</div>Get All Authors</h2>
+<p><code><a href="/api/authors">/api/authors</a></code></p>
+<p>This gets all authors in the system</p>
+<h4>Example</h4>
+<p><code>curl --location --request GET 'http://localhost:3000/api/authors'</code></p>
+</div>
+
+<div class="boxed">
+<h2><div class="post">POST</div>Add An Author</h2>
+<p><code>/api/author</code></p>
+<p>This will add an author to the system</p>
+<h4>Headers</h4>
+<p><code><strong>Content-Type</strong>: application/json</code></p>
+<h4>Body</h4>
+<p><code><pre>{
+    "name": "K. F. Bjerg",
+    "phone": "+4555555555",
+    "email": "kfb@supermagasinet.dk"
+}</pre></code></p>
+<h4>Example</h4>
+<p><code><pre>curl --location --request POST 'http://localhost:3000/api/author' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+        "name": "K. F. Bjerg",
+        "phone": "+4555555555",
+        "email": "kfb@supermagasinet.dk"
+    }'</pre></code></p>
+</div>
+
+<div class="boxed">
+<h2><div class="post">POST</div>Add An Article</h2>
+<p><code>/api/article/by/author/{authorId}</code></p>
+<p>This will add an article to the system</p>
+<h4>Headers</h4>
+<p><code><strong>Content-Type</strong>: application/json</code></p>
+<h4>Body</h4>
+<p><code><pre>{
+    "topic": "Hvor er mine knapper?!",
+    "articleBody": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+	totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "year": 2020
+}</pre></code></p>
+<h4>Example</h4>
+<p><code><pre>curl --location --request POST 'http://localhost:3000/api/article/by/author/ca93fc3b-195c-4293-ac5b-8b49e2c1684c' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "topic": "Hvor er mine knapper?!",
+    "articleBody": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+	totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "year": 2020
+}'</pre></code></p>
+</div>
+
+<div class="boxed">
+<h2><div class="delete">DELETE</div>Delete Article</h2>
+<p><code>/api/article/{articleId}</code></p>
+<p>Deletes an article from the system</p>
+<h4>Example</h4>
+<p><code>curl --location --request DELETE 'http://localhost:3000/api/article/c4c2177b-8465-40dc-a8b8-a706f7d99f35'</code></p>
+</div>
+
+</body>
+</html>
